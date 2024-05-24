@@ -2,34 +2,34 @@
 #include <fstream>
 
 void readBinaryDataFromFile(const char* filename, char*& data, int& size) {
-    std::ifstream inFile(filename, std::ios::binary); // Открываем файл для чтения в бинарном режиме
+    std::ifstream inFile(filename, std::ios::binary); // Opening the file for reading in binary mode
 
     if (inFile.is_open()) {
-        inFile.seekg(0, std::ios::end); // Переходим к концу файла, чтобы узнать размер файла
-        size = inFile.tellg(); // Получаем размер файла
-        inFile.seekg(0, std::ios::beg); // Переходим обратно в начало файла
+        inFile.seekg(0, std::ios::end); // Go to the end of the file to find out the file size
+        size = inFile.tellg(); // Getting the file size
+        inFile.seekg(0, std::ios::beg); //Go back to the beginning of the file
 
-        data = new char[size]; // Выделяем память для данных
+        data = new char[size]; // Allocating memory for data
 
-        inFile.read(data, size); // Читаем данные из файла
-        inFile.close(); // Закрываем файл
-        std::cout << "Данные успешно считаны из файла " << filename << " в двоичном виде." << std::endl;
+        inFile.read(data, size); // Reading data from a file
+        inFile.close(); 
+        std::cout << "The data was successfully read from the file" << filename << " in binary form." << std::endl;
     }
     else {
-        std::cerr << "Не удалось открыть файл для чтения." << std::endl;
+        std::cerr << "The file could not be opened for reading" << std::endl;
     }
 }
 
 void writeBinaryDataToFile(const char* filename, const char* data, int size) {
-    std::ofstream outFile(filename, std::ios::binary); // Открываем файл для записи в двоичном режиме
+    std::ofstream outFile(filename, std::ios::binary); 
 
     if (outFile.is_open()) {
-        outFile.write(data, size); // Записываем данные в файл
-        outFile.close(); // Закрываем файл
-        std::cout << "Данные успешно записаны в файл " << filename << " в двоичном виде." << std::endl;
+        outFile.write(data, size); 
+        outFile.close(); 
+        std::cout << "The data has been successfully written to the file " << filename << "in binary form." << std::endl;
     }
     else {
-        std::cerr << "Не удалось открыть файл для записи." << std::endl;
+        std::cerr << "The file could not be opened for writing." << std::endl;
     }
 }
 
@@ -40,10 +40,10 @@ int main() {
     char* data = nullptr;
     int size = 0;
 
-    readBinaryDataFromFile(inputFilename, data, size); // Читаем данные из файла
-    writeBinaryDataToFile(outputFilename, data, size); // Записываем данные в другой файл
+    readBinaryDataFromFile(inputFilename, data, size); // Reading data from a file
+    writeBinaryDataToFile(outputFilename, data, size); // Writing the data to another file
 
-    delete[] data; // Освобождаем память
+    delete[] data; 
 
     return 0;
 }
